@@ -14,7 +14,8 @@ from django.contrib.auth.decorators import login_required
 from .models import PostedSite,Comment,UsabilityRating,DesignRating,ContentRating
 from userauth.models import User,Profile
 from rest_framework import generics
-from .serializers import PostedSiteSerializer
+from .serializers import PostedSiteSerializer,ProfileSerializer
+from django.contrib import messages
 
 def home(request):
     posts= PostedSite.objects.all(),
@@ -78,26 +79,27 @@ def add_comment(request,post_id):
     return redirect('home')
 
 
-# @login_required(login_url='/accounts/login/')
-# def search_results(request):
-#     if 'searchItem' in request.GET and request.GET["searchItem"]:
-#         search_term = request.GET.get("searchItem")
-#         searched_user = Profile.search_by_username(search_term)
-#         # user = User.objects.get(username=searched_user)
-#         # user_images = Profile.objects.get(user=searched_user)
-#         message = f"{search_term}"
-#         context = {
-#             'message': message,
-#             'searched_user': searched_user
-#         }
-#         return render(request, 'search.html', context)
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'searchItem' in request.GET and request.GET["searchItem"]:
+        search_term = request.GET.get("searchItem")
+        searched_project = PostedSite.search_by_site(search_term)
+        # user = User.objects.get(username=searched_user)
+        # user_images = Profile.objects.get(user=searched_user)
+        message = f"{search_term}"
+        context = {
+            'message': message,
+            'projects': searched_project
+        }
+        return render(request, 'awards/search.html', context)
 
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'index.html',{"message":message})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'awards/search.html',{"message":message})
+
 def add_usability(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
-    # form = ReviewForm(request.POST)
+    form = UsabilityForm()
     if request.method == 'POST':
         form = UsabilityForm(request.POST)
         if form.is_valid():
@@ -106,13 +108,13 @@ def add_usability(request, post_id):
             rate.user_name = request.user
             rate.save()
         return redirect('home')
+    else:
+        form = UsabilityForm()
 
-    return render(request, 'awards/post_list.html')
-
+    return render(request, 'awards/usability.html',{'form': form,'post':post})
 def add_design(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     form = DesignForm()
-    print('sasdffdddd')
     if request.method == 'POST':
         form = DesignForm(request.POST)
         if form.is_valid():
@@ -124,20 +126,27 @@ def add_design(request, post_id):
     else:
         form = DesignForm()
 
-    return render(request, 'awards/post_list.html',{'form': form})
-def add_content(request, wine_id):
-    post = get_object_or_404(PostedSite, pk=wine_id)
-    # form = ReviewForm(request.POST)
+    return render(request, 'awards/post_detail.html',{'form': form,'post':post})
+def add_content(request, post_id):
+    post = get_object_or_404(PostedSite, pk=post_id)
+    form = ContentForm()
     if request.method == 'POST':
         form = ContentForm(request.POST)
         if form.is_valid():
             rate = form.save(commit=False)
+            print('ftttttttttttttttttttttttttttttttttttttth')
+
             rate.post = post
+
             rate.user_name = request.user
             rate.save()
-        return redirect('home')
 
-    return render(request, 'awards/post_list.html')    
+            messages.success(request, f'Success!')
+        return redirect('home')
+    else:
+        form = ContentForm()
+
+    return render(request, 'awards/content.html',{'form': form,'post':post})
 def vote(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     # form = ReviewForm(request.POST)
@@ -172,3 +181,24 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = PostedSite.objects.all()
     serializer_class = PostedSiteSerializer
+
+
+
+class CreateProfileView(generics.ListCreateAPIView):
+    '''
+    this class defines the create behaviour of our rest api
+    '''
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def perform_create(self,serializer):
+        '''
+        Save the post data when creating a new postedsite.
+        '''
+        serializer.save()
+
+class ProfileDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
