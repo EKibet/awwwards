@@ -12,7 +12,7 @@ class PhotoUploadModelForm(forms.ModelForm):
 
 class ContentForm(forms.ModelForm):
     class Meta:
-        model = DesignRating
+        model = ContentRating
         fields = ['rating', 'comment']
 
 

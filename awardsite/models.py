@@ -33,11 +33,31 @@ class PostedSite(models.Model):
     def vote_count(self):
         all_votes = list(map(lambda x: x.count, self.votes_set.all()))
         return np.sum(all_votes)
-        
+   
+    @classmethod
+    def retrieve_all(cls):
+        all_objects = PostedSite.objects.all()
+        for item in all_objects:
+            return item;
+
+    @classmethod
+    def get_image_by_id(cls,incoming_id):
+        image_result = cls.objects.get(id=incoming_id)
+        return image_result
+
+
+    @classmethod
+    def update_image(cls,current_value,new_value):
+        fetched_object = cls.objects.filter(designer=current_value).update(designer=new_value)
+        return fetched_object     
     # def __unicode__(self):
     #     return self.name
-
-
+    @classmethod
+    def search_by_site(cls,search_term):
+        search_result = cls.objects.filter(site_name__icontains=search_term)
+        return search_result
+    def __str__(self):
+        return self.site_name
 class DesignRating(models.Model):
     RATING_CHOICES = (
         (1, '1'),
