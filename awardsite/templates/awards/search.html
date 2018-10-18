@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  .picture-circle, .picture-circle--medium, .picture-circle--small {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px; }
+    .picture-circle--medium {
+      width: 136px;
+      height: 136px; }
+      .username{
+          display: flex;
+      }
+   </style>
+{% for site in projects %}
+<div class="row profile-settings" style="left:50%;">
+  <div class="col-xs-12">
+    <div class="profile-pic-name">
+        <img class="picture-circle--medium" src="{{ site.user_profile.profile_path.url }}">
+        {{ site.profile.profile_path.url }}
+        <h2>Project:<a href="{{site.site_url}}"> {{ site.site_name }}</a> </h2>
+      <span class="username"></span>
+    </div>
+  
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

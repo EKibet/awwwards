@@ -8,7 +8,7 @@
 <div class="container">
 
 
-		<form id="my-form" action="{% url 'add_design' post_id=post.id %}" method="POST" >
+		<form id="my-form" action="{% url 'review_usability' post_id=post.id %}" method="POST" >
 				{% csrf_token %}
 
 		<fieldset class="rating">
