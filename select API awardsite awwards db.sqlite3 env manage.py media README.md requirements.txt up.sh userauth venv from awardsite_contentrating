@@ -1,0 +1,25 @@
+                  List of relations
+ Schema |            Name            | Type  | Owner 
+--------+----------------------------+-------+-------
+ public | auth_group                 | table | yego
+ public | auth_group_permissions     | table | yego
+ public | auth_permission            | table | yego
+ public | auth_user                  | table | yego
+ public | auth_user_groups           | table | yego
+ public | auth_user_user_permissions | table | yego
+ public | awardsite_comment          | table | yego
+ public | awardsite_contentrating    | table | yego
+ public | awardsite_designrating     | table | yego
+ public | awardsite_postedsite       | table | yego
+ public | awardsite_usabilityrating  | table | yego
+ public | awardsite_votes            | table | yego
+ public | django_admin_log           | table | yego
+ public | django_content_type        | table | yego
+ public | django_migrations          | table | yego
+ public | django_session             | table | yego
+ public | star_ratings_rating        | table | yego
+ public | star_ratings_userrating    | table | yego
+ public | userauth_profile           | table | yego
+ public | votes_vote                 | table | yego
+(20 rows)
+

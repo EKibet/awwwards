@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import PostListView,PostCreateView,CreateView,DetailsView,PostDetailView
+from .views import PostListView,PostCreateView,CreateView,DetailsView,PostDetailView,CreateProfileView,ProfileDetailsView
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
@@ -20,7 +20,7 @@ urlpatterns=[
     # url(r'^profile/(?P<username>[-_\w.]+)/$', views.profile, name='profile'),
     # url(r'^post/(?P<pk>\d+)/$', views.post, name='post'),
     # url(r'^profile/(?P<username>[-_\w.]+)/edit/$', views.profile_settings, name='profile_settings'),
-    # url(r'^search/',views.search_results, name='search_results'),
+    url(r'^search/',views.search_results, name='search_results'),
 
     # url(r'^post/(?P<pk>\d+)/likes/$', views.likes, name='likes'),
     # url(r'^review/(?P<review_id>[0-9]+)/$', views.review_detail, name='review_detail'),
@@ -33,6 +33,8 @@ urlpatterns=[
     url(r'^sites/$', CreateView.as_view(), name="create"),
     url(r'^sites/(?P<pk>[0-9]+)/$',DetailsView.as_view(), name="details"),
     url(r'^sites/(?P<pk>[0-9]+)/details$',PostDetailView.as_view(), name="detail"),
+    url(r'^api_profile/(?P<pk>[0-9]+)/profile$',CreateProfileView.as_view(), name="details"),
+    url(r'^api_detail/(?P<pk>[0-9]+)/detail$',ProfileDetailsView.as_view(), name="detail"),
 
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
