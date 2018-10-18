@@ -1,0 +1,108 @@
+
+  
+        {% for post in posts %}
+        {% if post.screenshot1 %}
+
+        <div class="warp container" style="background-image: url({{post.screenshot1.url}});" >
+          {% else %}
+          <div class="warp container" style="background-image: url('/static/images/bg.jpg');" >
+
+          {%endif %}
+  
+
+        
+        <div class="index-content">
+            <div class="container">
+                    <a href="{{site_url}}">
+                        <div class="col-lg-4">
+                            <div class="card">
+                                {% if post.screenshot1 %}
+
+                                <img src={{post.screenshot1.url}}>
+                                {%endif %}
+                                <h4>{{post.site_name}}</h4>
+                                <p>{{post.description}}</p>
+
+
+                                <a href="{{post.site_url}}" class="blue-button">Visit site</a>
+
+                                <a href="{% url 'detail' post.id %}"> <button class="btn open-form">Rate Site By Design</button>
+                                </a>
+                                <div class="container">
+                                        <div class="loader">4</div>
+                                      </div>
+                                <h5>{{ post.rating.count }} Design  ({{ post.average_design | floatformat }} average rating)</h5>
+                                <h5>{{ post.votes.count }} reviews ({{ post.vote_count  }} votes)</h5>
+                                <h5>{{ post.rating.count }} Content ({{ post.average_content | floatformat }} average rating)</h5>
+
+                                <h5>{{ post.rating.count }} Usability ({{ post.average_usability | floatformat }} average rating)</h5>
+
+
+                                 {% if post.rating_set.all %}
+                                <div>
+                                    {% for review in wine.rating_set.all %}
+                                    <div>
+                                        <em>{{ review.comment }}</em>
+                                        <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+                                        Read more
+                                        </a></h5>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+        </div>
+                                {% else %}
+                                <p>No reviews for this wine yet</p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </a>
+            </div>
+        </div>
+        
+        {% endfor %}
+       
+        
+    </div>
+{% endblock %}
+
+
+
+
+
+
+<div class="container">
+        <div class="loader">4</div>
+      </div>
+<h5>{{ post.rating.count }} Design  ({{ post.average_design | floatformat }} average rating)</h5>
+<h5>{{ post.votes.count }} reviews ({{ post.vote_count  }} votes)</h5>
+<h5>{{ post.rating.count }} Content ({{ post.average_content | floatformat }} average rating)</h5>
+
+<h5>{{ post.rating.count }} Usability ({{ post.average_usability | floatformat }} average rating)</h5>
+
+
+ {% if post.rating_set.all %}
+<div>
+    {% for review in wine.rating_set.all %}
+    <div>
+        <em>{{ review.comment }}</em>
+        <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+        Read more
+        </a></h5>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% else %}
+<p>No reviews for this wine yet</p>
+{% endif %}
+</div>
+
+</div>
+</a>
+
+
+
+<ul class="gallery">
+        <li><a href="#"><img src="http://dev.steelehouse.com/codepen/game.jpg"/><span class="name">Rexodus<span class="title">Destruction Expert</span></span></a></li>
+      </ul>
