@@ -1,11 +1,11 @@
-# InstagramClone
+# AwardsClone
 
 
-  InstagramClone is a website dedicated to sharing photography entirely designed with Instagram simulation.
+  AwardsClone is a website dedicated to sharing photography entirely designed with Instagram simulation.
 
 ## Versioning
 
- InstagramClone-V1.0 
+ AwardsClone-V1.0 
 
 ## Author
 
