@@ -1,7 +1,7 @@
 # AwardsClone
 
 
-  AwardsClone is a website dedicated to sharing photography entirely designed with Instagram simulation.
+  AwardsClone is a website dedicated to promoting web design,creativity and content writing.
 
 ## Versioning
 
@@ -14,19 +14,19 @@
 ## Features
 
 
-As a user of the application you will be able to:
+As a user, You will:
 
+1. View posted projects and their details.
+2. Post a project to be rated/reviewed
+3. Rate/ review other users' projects
+4. Search for projects 
+5. View projects overall score
+6. View my profile page.
 
-
-1. Sign in to the application to start using. 
-2. Upload my pictures to the application.
-3. View different photos that interest you.
-4. See my profile with all my pictures.
-2. Click on a single photo to expand it and also view the details of the photo. The photo details will appear      on a modal within the same route as the main page.
 
 ### Installing
 
-*** To view the app.Visit -> [instagramlite](http://instagramlite.herokuapp.com/instagram/)
+*** To view the app.Visit -> [awardsclone](https://github.com/EKibet/awwwards)
 
 1. Clone this repo: git clone https://github.com/EKibet/instagram.git.
 2. The repo comes in a zipped or compressed format. Extract to your prefered location and open it.
@@ -56,8 +56,7 @@ As a user of the application you will be able to:
 Use the command given below to run automated tests.
 
 
-        python manage.py test instagram
-        python manage.py test user
+        python manage.py test awardsite
 
 
 
