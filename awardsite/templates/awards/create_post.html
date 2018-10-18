@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+      <div class="contentform">
+          <div class="leftcontact">
+                    <div class="form-group">
+                      <p>site name<span>*</span></p>
+                      <span class="icon-case"><i class="fa fa-male"></i></span>
+                          <input type="text" name="site_name" id="nom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Nom' doit être renseigné."/>
+                  <div class="validation"></div>
+         </div> 
+  
+              <div class="form-group">
+              <p>Site URL <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-user"></i></span>
+                  <input type="text" name="site_url" id="prenom" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>
+	
+  
+              <div class="form-group">
+              <p>Description <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-home"></i></span>
+                  <input type="text" name="description" id="society" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Société' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>
+  
+              <div class="form-group">
+              <p>Categories <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-location-arrow"></i></span>
+                  <input type="text" name="categories" id="adresse" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>
+  
+              <div class="form-group">
+              <p>Tags <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-map-marker"></i></span>
+                  <input type="text" name="tags" id="postal" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Code postal' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>	
+
+      </div>
+  
+      <div class="rightcontact">	
+  
+              <div class="form-group">
+              <p>Designer <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-building-o"></i></span>
+                  <input type="text" name="designer" id="ville" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Ville' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>	
+  
+              <div class="form-group">
+              <p>Screenshot1 <span>*</span></p>	
+              <span class="icon-case"><i class="fa fa-phone"></i></span>
+                  <input type="file" name="screenshot1" id="phone" data-rule="maxlen:10" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Téléphone' doit être renseigné. Minimum 10 chiffres"/>
+                  <div class="validation"></div>
+              </div>
+  
+              <div class="form-group">
+              <p>Screenshot2 <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-info"></i></span>
+                  <input type="file" name="screenshot2" id="fonction" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Fonction' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>
+  
+              <div class="form-group">
+              <p>Screenshot3 <span>*</span></p>	
+              <span class="icon-case"><i class="fa fa-comment-o"></i></span>
+                  <input type="file" name="screenshot3" id="sujet" data-rule="required" data-msg="Vérifiez votre saisie sur les champs : Le champ 'Sujet' doit être renseigné."/>
+                  <div class="validation"></div>
+              </div>
+          
+
+      </div>
+      </div>
+  <button type="submit" class="bouton-contact">Post</button>
+      
+  </form>	
+  
+    
+  </body>
+  </html>
+  <style>
+
+.info p {
+  text-align:center;
+  color: #999;
+  text-transform:none;
+  font-weight:400;
+  font-size:15px;
+  margin-top:2px
+}
+
+.info i {
+  color:#F6AA93;
+}
+form h1 {
+  font-size: 15px;
+  background: #F6AA93 none repeat scroll 0% 0%;
+  color: rgb(255, 255, 255);
+  padding: 22px 25px;
+  border-radius: 5px 5px 0px 0px;
+  margin: auto;
+  text-shadow: none; 
+  text-align:left
+}
+
+form {
+  border-radius: 5px;
+  max-width:700px;
+  width:100%;
+  margin: 5% auto;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+p span {
+  color: #F00;
+}
+
+p {
+  margin: 0px;
+  font-weight: 400;
+  line-height: 2;
+  color:#333;
+}
+
+h1 {
+  text-align:center; 
+  color: #666;
+  text-shadow: 1px 1px 0px #FFF;
+  margin:50px 0px 0px 0px
+}
+
+input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  float: left;
+  padding: 0px 15px;
+}
+
+a {
+  text-decoration:inherit
+}
+
+
+
+.form-group {
+  overflow: hidden;
+  clear: both;
+}
+
+.icon-case {
+  width: 35px;
+  float: left;
+  border-radius: 5px 0px 0px 5px;
+  background:#eeeeee;
+  height:42px;
+  position: relative;
+  text-align: center;
+  line-height:40px;
+}
+
+i {
+  color:#555;
+}
+
+.contentform {
+  padding: 40px 30px;
+}
+
+.bouton-contact{
+  background-color: #81BDA4;
+  color: #FFF;
+  text-align: center;
+  width: 100%;
+  border:0;
+  padding: 17px 25px;
+  border-radius: 0px 0px 5px 5px;
+  cursor: pointer;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.leftcontact {
+  width:49.5%; 
+  float:left;
+  border-right: 1px dotted #CCC;
+  box-sizing: border-box;
+  padding: 0px 15px 0px 0px;
+}
+
+.rightcontact {
+  width:49.5%;
+  float:right;
+  box-sizing: border-box;
+  padding: 0px 0px 0px 15px;
+}
+
+.validation {
+  display:none;
+  margin: 0 0 10px;
+  font-weight:400;
+  font-size:13px;
+  color: #DE5959;
+}
+
+  </style>
+  {% endblock %}
