@@ -1,0 +1,79 @@
+{%extends "base.html"%} 
+{% load bootstrap4 %}
+{% block content %}
+      {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+      {% endif %}
+<div class="row">
+  <div class="col-md-6">
+
+
+  </div>
+  <div class="col-md-6">
+      <div class="container-fluid">
+
+    <img class="container__img"src="https://trello-attachments.s3.amazonaws.com/5a394d663fc5c0942f85f37c/5a82fd5dc4d760e847b6589a/eba48aa1d9fa53ddfacf75bd2c9853a6/500px-Instagram_logo.svg.png" alt="Instagram">
+    <div class="container__fblogin">
+      <button><i class="fa fa-facebook-square" style="color: white; font-size: 14px;"></i> Log in with Facebook</button>
+    </div>
+    <p class="container__or">OR</p>
+
+    <form class="container__form" action="/signup" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-sm" value="Sign Up">Sign Up</button>
+      </div>
+
+      <input type="hidden" name="next" value="{{next}}">
+
+    </form>
+    <p class="container__terms">By signin up, you agree to our <br> <strong>Terms & Privacy Policy.</strong></p>
+
+
+  </div>
+  <div class="account">
+      <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
+    </div>
+    <div class="app-download-links" >
+        <p>Get the app.</p>
+        <a href="#"><img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1533403096/download-appstore.png" alt="Download on App Store" /></a>
+        <a href="#"><img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1533403096/download-googleplay.png" alt="Download on Google Play" /></a> 
+        <a href="#"><img src="https://res.cloudinary.com/jorpdesigns/image/upload/v1533403096/download-microsoft.png" alt="Get from Microsoft" /></a> 
+      </div>  
+  </div>
+
+
+
+
+
+    <!-- empty div -->
+
+</div>
+
+{% endblock %}
+
+<div class="container">
+
+  <img class="container__img"src="https://trello-attachments.s3.amazonaws.com/5a394d663fc5c0942f85f37c/5a82fd5dc4d760e847b6589a/eba48aa1d9fa53ddfacf75bd2c9853a6/500px-Instagram_logo.svg.png" alt="Instagram">
+  <div class="container__fblogin">
+    <button><i class="fa fa-facebook-square" style="color: white; font-size: 14px;"></i> Log in with Facebook</button>
+  </div>
+  <p class="container__or">OR</p>
+  <form class="container__form" action="/" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-sm" value="Sign Up">Sign Up</button>
+    </div>
+
+    <input type="hidden" name="next" value="{{next}}">
+
+  </form>
+  <p class="container__terms">By signin up, you agree to our <br> <strong>Terms & Privacy Policy.</strong></p>
+  
+</div>
+
+<div class="account">
+  <p>Have an account? <a href="#">Log in</a></p>
+</div>
