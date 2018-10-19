@@ -103,6 +103,8 @@
         transition-delay: .2s;
     }
 </style>
+<div class="container-fluid">
+
 
 {% for post in posts %}
 
@@ -140,7 +142,7 @@
 
 </div>
 <div class="row" style="position: relative; height: 150px;">
-<p style="color: black; position: relative; right: 10%;font-size: 30px;top:10px;"><strong>Site Of The Day </strong>Previous Winners</p>
+<p style="color: black; position: relative; text-align: center;right: 10%;top:10px;"><strong>Site Of The Day </strong>Previous Winners</p>
 </div>
 <div class="container-fluid row">
     {% for post in posts %}
@@ -167,7 +169,9 @@
                     </a></small>
                     <h5>{{ post.desing.count }} Design  ({{ post.average_design | floatformat }} average rating)</h5>
                     <h5>{{ post.content.count }} Content  ({{ post.average_content | floatformat }} average rating)</h5>
-                    <h5>{{ post.content.count }} Content  ({{ post.average_usability | floatformat }} average rating)</h5>
+                    <h5>{{ post.content.count }} Usability  ({{ post.average_usability | floatformat }} average rating)</h5>
+                    
+                    <h5>Overall  ({{ post.average_total | floatformat }} rating)</h5>
 
                     {% for review in post.rating_set.all %}
                            <small> <em>{{ review.comment }}</em></small>
@@ -189,5 +193,5 @@
 </div>
 </div>
 </div>
-
+</div>
 {% endblock %}

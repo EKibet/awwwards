@@ -65,7 +65,7 @@ def signout(request):
     return redirect('login')
 
 
-
+@login_required(login_url='/login/')
 def add_comment(request,post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     if request.method == 'POST':
@@ -79,7 +79,7 @@ def add_comment(request,post_id):
     return redirect('home')
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/login/')
 def search_results(request):
     if 'searchItem' in request.GET and request.GET["searchItem"]:
         search_term = request.GET.get("searchItem")
@@ -94,9 +94,10 @@ def search_results(request):
         return render(request, 'awards/search.html', context)
 
     else:
-        message = "You haven't searched for any term"
-        return render(request, 'awards/search.html',{"message":message})
+        messages.success(request, f"You haven't searched for any term")
 
+        return render(request, 'awards/search.html',{"message":message})
+@login_required(login_url='/login/')
 def add_usability(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     form = UsabilityForm()
@@ -112,12 +113,17 @@ def add_usability(request, post_id):
         form = UsabilityForm()
 
     return render(request, 'awards/usability.html',{'form': form,'post':post})
+
+@login_required(login_url='/login/')
 def add_design(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     form = DesignForm()
+    print('sasdffdddd')
     if request.method == 'POST':
+
         form = DesignForm(request.POST)
         if form.is_valid():
+            print('sauuuuuuuuuuuuuuuuuuuuuuuuuusdffdddd')
             rate = form.save(commit=False)
             rate.post = post
             rate.user_name = request.user
@@ -125,8 +131,8 @@ def add_design(request, post_id):
         return redirect('home')
     else:
         form = DesignForm()
-
     return render(request, 'awards/post_detail.html',{'form': form,'post':post})
+@login_required(login_url='/login/')
 def add_content(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     form = ContentForm()
@@ -147,6 +153,7 @@ def add_content(request, post_id):
         form = ContentForm()
 
     return render(request, 'awards/content.html',{'form': form,'post':post})
+@login_required(login_url='/login/')
 def vote(request, post_id):
     post = get_object_or_404(PostedSite, pk=post_id)
     # form = ReviewForm(request.POST)

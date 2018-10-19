@@ -24,6 +24,14 @@ class PostedSite(models.Model):
     def average_design(self):
         all_ratings = list(map(lambda x: x.rating, self.designrating_set.all()))
         return np.mean(all_ratings)
+
+
+    def average_total(self):
+        all_ratings = list(map(lambda x: x.rating, self.designrating_set.all()))
+        usability_ratings = list(map(lambda x: x.rating, self.usabilityrating_set.all()))
+        contentrating_ratings = list(map(lambda x: x.rating, self.contentrating_set.all()))
+
+        return np.mean(all_ratings+usability_ratings+contentrating_ratings)
     def average_usability(self):
         all_ratings = list(map(lambda x: x.rating, self.usabilityrating_set.all()))
         return np.mean(all_ratings)
@@ -58,6 +66,12 @@ class PostedSite(models.Model):
         return search_result
     def __str__(self):
         return self.site_name
+class Comment(models.Model):
+    comment = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.comment    
 class DesignRating(models.Model):
     RATING_CHOICES = (
         (1, '1'),
@@ -74,7 +88,7 @@ class DesignRating(models.Model):
     post = models.ForeignKey(PostedSite)
     pub_date = models.DateTimeField(auto_now=True)
     user_name = models.ForeignKey(User)
-    comment = models.CharField(max_length=200)
+    comment = models.ForeignKey(Comment)
     rating = models.IntegerField(choices=RATING_CHOICES, null=True)
     
 class UsabilityRating(models.Model):
@@ -93,7 +107,7 @@ class UsabilityRating(models.Model):
     post = models.ForeignKey(PostedSite)
     pub_date = models.DateTimeField(auto_now=True)
     user_name = models.ForeignKey(User)
-    comment = models.CharField(max_length=200)
+    comment = models.ForeignKey(Comment)
     rating = models.IntegerField(choices=RATING_CHOICES, null=True)
     
 
@@ -113,7 +127,7 @@ class ContentRating(models.Model):
     post = models.ForeignKey(PostedSite)
     pub_date = models.DateTimeField(auto_now=True)
     user_name = models.ForeignKey(User)
-    comment = models.CharField(max_length=200)
+    comment = models.ForeignKey(Comment)
     rating = models.IntegerField(choices=RATING_CHOICES, null=True)
         
 class Votes(models.Model):
@@ -121,11 +135,3 @@ class Votes(models.Model):
     user = models.ForeignKey(User)
     profile = models.ForeignKey(Profile)
     count  = models.IntegerField()
-class Comment(models.Model):
-    post = models.ForeignKey('PostedSite', null=True)
-    user = models.ForeignKey(User)
-    comment = models.CharField(max_length=100)
-    posted_on = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.comment

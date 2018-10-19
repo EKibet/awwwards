@@ -1,8 +1,7 @@
 
 {% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
-
+{% load bootstrap4 %} 
 {% block content %}
 
 <div class="container">
@@ -11,26 +10,8 @@
 		<form id="my-form" action="{% url 'review_usability' post_id=post.id %}" method="POST" >
 				{% csrf_token %}
 
-		<fieldset class="rating">
-						<legend>Please rate:</legend>
-						<input type="radio" id="star5" name="rating" value="10" /><label for="star10" title="Rocks!">10 stars</label>
-						<input type="radio" id="star4" name="rating" value="9" /><label for="star9" title="Pretty good">9 stars</label>
-						<input type="radio" id="star3" name="rating" value="8" /><label for="star8" title="Meh">8 stars</label>
-						<input type="radio" id="star2" name="rating" value="7" /><label for="star7" title="Kinda bad">7 stars</label>
-						<input type="radio" id="star1" name="rating" value="6" /><label for="star6" title="Sucks big time">6 star</label>
-						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-				
-				</fieldset>
+				{% bootstrap_form form %}
 
-<div class="row">
-	<div class="form-group col-md-12">
-			<textarea name="comment" placeholder="Enter comment" class="form-control" id=""></textarea>
-		</div>
-</div>
 <button type="submit" class="btn send-form">Send</button>
 </form>
 
