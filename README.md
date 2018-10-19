@@ -1,7 +1,8 @@
 # AwardsClone
 
 
-  AwardsClone is a website dedicated to promoting web design,creativity and content writing.
+professional web design and development competition site. (Awwwards Clone)
+
 
 ## Versioning
 
